@@ -3,257 +3,469 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>币圈 Telegram Bot 目录 | Crypto Telegram Bots</title>
-    <meta name="description" content="收录最全的币圈 Telegram 机器人 - 交易、收益、监控、复制交易">
+    <title>币传 | 币圈 Telegram Bot 目录</title>
+    <meta name="description" content="币传 - 收录最全的币圈 Telegram 机器人目录 | 交易、收益、监控、复制交易">
+    <meta name="keywords" content="币圈, Telegram Bot, 交易机器人, 币传, crypto, trading bot, yield">
+    <meta property="og:title" content="币传 | 币圈 Telegram Bot 目录">
+    <meta property="og:description" content="收录最全的币圈 Telegram 机器人">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
+        :root {
+            --primary: #f7931a;
+            --primary-dark: #e88a0c;
+            --bg: #0a0a0a;
+            --bg-card: #111;
+            --bg-card-hover: #1a1a1a;
+            --text: #e0e0e0;
+            --text-muted: #888;
+            --border: #222;
+            --accent: #627eea;
+        }
+        body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #0a0a0a; 
-            color: #e0e0e0; 
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.6;
+            min-height: 100vh;
         }
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-        header { 
-            text-align: center; 
-            padding: 60px 0; 
-            border-bottom: 1px solid #222;
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Header */
+        header {
+            padding: 40px 0;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+            background: linear-gradient(180deg, #111 0%, #0a0a0a 100%);
         }
-        h1 { 
-            font-size: 2.5rem; 
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, #f7931a, #627eea);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 8px;
         }
-        .subtitle { color: #888; font-size: 1.1rem; }
-        .nav { 
-            display: flex; 
-            gap: 15px; 
-            justify-content: center; 
+        .logo span { color: var(--primary); }
+        .tagline { color: var(--text-muted); font-size: 1.1rem; }
+        
+        /* Stats */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
             padding: 30px 0;
             flex-wrap: wrap;
         }
-        .nav a { 
-            color: #f7931a; 
+        .stat-item {
+            text-align: center;
+        }
+        .stat-num {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        .stat-label { color: var(--text-muted); font-size: 0.85rem; }
+        
+        /* Nav */
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            padding: 20px 0;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            background: rgba(10,10,10,0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+        }
+        nav a {
+            color: var(--text);
             text-decoration: none;
             padding: 10px 20px;
-            border: 1px solid #f7931a;
+            border: 1px solid var(--border);
             border-radius: 25px;
             transition: all 0.3s;
+            font-size: 0.9rem;
         }
-        .nav a:hover { background: #f7931a; color: #000; }
+        nav a:hover, nav a.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #000;
+        }
+        
+        /* Search */
+        .search-box {
+            max-width: 600px;
+            margin: 30px auto;
+            position: relative;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 16px 24px;
+            font-size: 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            color: var(--text);
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .search-box input:focus {
+            border-color: var(--primary);
+        }
+        .search-box input::placeholder { color: var(--text-muted); }
+        
+        /* Section */
         .section { margin: 50px 0; }
-        .section h2 { 
-            font-size: 1.5rem; 
+        .section-title {
+            font-size: 1.3rem;
             margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #333;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        .grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
-            gap: 20px; 
+        .section-title span { color: var(--primary); }
+        
+        /* Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 16px;
         }
-        .card { 
-            background: #111; 
-            border: 1px solid #222;
+        
+        /* Card */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
             border-radius: 12px;
             padding: 20px;
             transition: all 0.3s;
         }
-        .card:hover { 
-            border-color: #f7931a; 
-            transform: translateY(-3px);
+        .card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            background: var(--bg-card-hover);
         }
-        .card h3 { 
-            color: #f7931a; 
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
             margin-bottom: 10px;
+        }
+        .card h3 {
+            color: var(--primary);
             font-size: 1.1rem;
+            margin: 0;
         }
-        .card p { color: #999; font-size: 0.9rem; }
-        .tag { 
-            display: inline-block; 
-            background: #222; 
-            color: #627eea;
-            padding: 4px 12px;
-            border-radius: 15px;
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin: 8px 0;
+        }
+        .tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+        .tag {
             font-size: 0.75rem;
-            margin-top: 10px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            background: #1a1a1a;
+            color: var(--accent);
         }
-        .tag.free { color: #4caf50; background: #1a3d1a; }
-        .tag.paid { color: #ff9800; background: #3d2a1a; }
-        footer { 
-            text-align: center; 
-            padding: 40px; 
-            color: #666;
-            border-top: 1px solid #222;
+        .tag.free { color: #4caf50; background: #1a2e1a; }
+        .tag.chain { color: #9c27b0; background: #1a1a2e; }
+        
+        /* CTA */
+        .cta {
+            text-align: center;
+            padding: 40px 20px;
+            margin: 40px 0;
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px dashed var(--border);
+        }
+        .cta h3 { margin-bottom: 10px; }
+        .cta p { color: var(--text-muted); margin-bottom: 20px; }
+        .cta a {
+            display: inline-block;
+            background: var(--primary);
+            color: #000;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+        .cta a:hover { transform: scale(1.05); }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
             margin-top: 60px;
         }
-        .stats { 
-            display: flex; 
-            justify-content: center; 
-            gap: 40px; 
-            margin: 30px 0;
+        footer a { color: var(--primary); }
+        
+        /* Filter */
+        .filter-btns {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
         }
-        .stat { text-align: center; }
-        .stat-num { font-size: 2rem; color: #f7931a; font-weight: bold; }
-        .stat-label { color: #666; font-size: 0.9rem; }
+        .filter-btn {
+            padding: 8px 16px;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.85rem;
+        }
+        .filter-btn.active, .filter-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        
+        @media (max-width: 600px) {
+            .logo { font-size: 2rem; }
+            .stats { gap: 20px; }
+            .stat-num { font-size: 1.5rem; }
+            .grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>🤖 币圈 Telegram Bot 目录</h1>
-            <p class="subtitle">收录最全的币圈 TG 机器人 | 交易 · 收益 · 监控 · 复制交易</p>
+    <header>
+        <div class="container">
+            <div class="logo">币<span>传</span></div>
+            <p class="tagline">币圈 Telegram Bot 目录 | 交易 · 收益 · 监控 · 复制交易</p>
+            
             <div class="stats">
-                <div class="stat">
-                    <div class="stat-num">25+</div>
+                <div class="stat-item">
+                    <div class="stat-num" id="botCount">25+</div>
                     <div class="stat-label">收录机器人</div>
                 </div>
-                <div class="stat">
-                    <div class="stat-num">5</div>
+                <div class="stat-item">
+                    <div class="stat-num">6</div>
                     <div class="stat-label">分类</div>
                 </div>
-                <div class="stat">
+                <div class="stat-item">
                     <div class="stat-num">每日</div>
                     <div class="stat-label">更新</div>
                 </div>
             </div>
-        </header>
+        </div>
+    </header>
+    
+    <nav>
+        <a href="#trading" class="active">交易</a>
+        <a href="#yield">收益</a>
+        <a href="#monitor">监控</a>
+        <a href="#portfolio">组合</a>
+        <a href="#copy">复制</a>
+        <a href="#tools">工具</a>
+    </nav>
+    
+    <div class="container">
+        <div class="search-box">
+            <input type="text" id="search" placeholder="搜索机器人..." oninput="filterBots()">
+        </div>
         
-        <nav class="nav">
-            <a href="#trading">交易</a>
-            <a href="#yield">收益</a>
-            <a href="#monitor">监控</a>
-            <a href="#portfolio">组合管理</a>
-            <a href="#copy">复制交易</a>
-        </nav>
-
+        <div class="filter-btns">
+            <button class="filter-btn active" onclick="setFilter('all')">全部</button>
+            <button class="filter-btn" onclick="setFilter('free')">免费</button>
+            <button class="filter-btn" onclick="setFilter('ai')">AI</button>
+            <button class="filter-btn" onclick="setFilter('whale')">鲸鱼</button>
+        </div>
+        
+        <!-- 交易类 -->
         <section id="trading" class="section">
-            <h2>🔥 交易类</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Wagmi</h3>
-                    <p>多链交易机器人，支持 SOL/BNB/ETH，50+ 多签钱包</p>
-                    <span class="tag">多链</span>
-                </div>
-                <div class="card">
-                    <h3>Aevo Bot</h3>
-                    <p>AI 交易机器人，45+ 结构化工具，AI agents 直连交易所</p>
-                    <span class="tag">AI</span>
-                </div>
-                <div class="card">
-                    <h3>Jupiter Bot</h3>
-                    <p>Solana 交易，0 手续费 1 个月</p>
-                    <span class="tag free">免费</span>
-                </div>
-                <div class="card">
-                    <h3>XBTS DEX</h3>
-                    <p>DEX 交易 + 跨链 Swap + 质押，自 2018 年起</p>
-                    <span class="tag">多链</span>
-                </div>
-                <div class="card">
-                    <h3>Polysight</h3>
-                    <p>Polymarket 预测市场交易机器人</p>
-                    <span class="tag">预测</span>
-                </div>
-            </div>
+            <h2 class="section-title"><span>🔥</span> 交易类</h2>
+            <div class="grid" id="tradingGrid"></div>
         </section>
-
+        
+        <!-- 收益类 -->
         <section id="yield" class="section">
-            <h2>💰 收益/Yield</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Yieldex AI</h3>
-                    <p>稳定币收益比较，12%+ APY</p>
-                    <span class="tag free">免费</span>
-                </div>
-                <div class="card">
-                    <h3>Yield Bot AI</h3>
-                    <p>DeFi Yield 狙击，实时监控最佳收益</p>
-                    <span class="tag">DeFi</span>
-                </div>
-                <div class="card">
-                    <h3>TBook</h3>
-                    <p>RWA 收益引入 Telegram，直接在 TG 获取现实世界收益</p>
-                    <span class="tag">RWA</span>
-                </div>
-                <div class="card">
-                    <h3>BeanBee AI</h3>
-                    <p>BNB Chain 收益优化，rug 检测</p>
-                    <span class="tag">BNB</span>
-                </div>
-            </div>
+            <h2 class="section-title"><span>💰</span> 收益/Yield</h2>
+            <div class="grid" id="yieldGrid"></div>
         </section>
-
+        
+        <!-- 监控类 -->
         <section id="monitor" class="section">
-            <h2>📡 监控/信号</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Sect Bot</h3>
-                    <p>TG 喊单记录，500万+ 数据，史上最大公开喊单库</p>
-                    <span class="tag">数据</span>
-                </div>
-                <div class="card">
-                    <h3>Whale AI</h3>
-                    <p>追踪 1000+ 鲸鱼钱包，实时获取买入动态</p>
-                    <span class="tag">鲸鱼</span>
-                </div>
-                <div class="card">
-                    <h3>Alpha Meme</h3>
-                    <p>巨鲸追踪 + 新币提醒 + Alpha 内幕</p>
-                    <span class="tag">Alpha</span>
-                </div>
-                <div class="card">
-                    <h3>CoinTrendz</h3>
-                    <p>币圈事件日历，每日更新</p>
-                    <span class="tag free">免费</span>
-                </div>
-                <div class="card">
-                    <h3>Bella Research</h3>
-                    <p>LLM 研究 + 鲸鱼追踪代币分析</p>
-                    <span class="tag">AI</span>
-                </div>
-            </div>
+            <h2 class="section-title"><span>📡</span> 监控/信号</h2>
+            <div class="grid" id="monitorGrid"></div>
         </section>
-
+        
+        <!-- 组合管理 -->
         <section id="portfolio" class="section">
-            <h2>💼 组合管理</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Laika AI</h3>
-                    <p>钱包追踪 + 实时分析 + NFT 管理 + Tap-to-Earn</p>
-                    <span class="tag">多链</span>
-                </div>
-                <div class="card">
-                    <h3>Outlight AI</h3>
-                    <p>AI 驱动投资组合管理，Twitter + 链上分析</p>
-                    <span class="tag">AI</span>
-                </div>
-            </div>
+            <h2 class="section-title"><span>💼</span> 组合管理</h2>
+            <div class="grid" id="portfolioGrid"></div>
         </section>
-
+        
+        <!-- 复制交易 -->
         <section id="copy" class="section">
-            <h2>🔄 复制交易</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>AsterBot</h3>
-                    <p>做多/做空 + 复制交易 + 分析功能</p>
-                    <span class="tag">DEX</span>
-                </div>
-                <div class="card">
-                    <h3>GMGN</h3>
-                    <p>复制交易 + 跟单，smart money 追踪</p>
-                    <span class="tag">多链</span>
-                </div>
-            </div>
+            <h2 class="section-title"><span>🔄</span> 复制交易</h2>
+            <div class="grid" id="copyGrid"></div>
         </section>
-
-        <footer>
-            <p>🤖 币圈 Telegram Bot 目录</p>
-            <p style="margin-top: 10px; color: #444;">每日更新 · 数据来源: Twitter</p>
-        </footer>
+        
+        <!-- 工具类 -->
+        <section id="tools" class="section">
+            <h2 class="section-title"><span>🛠️</span> 工具类</h2>
+            <div class="grid" id="toolsGrid"></div>
+        </section>
+        
+        <!-- 提交 -->
+        <div class="cta">
+            <h3>📢 推荐/提交机器人</h3>
+            <p>发现好用的币圈 Telegram 机器人？告诉我们！</p>
+            <a href="https://t.me/your_bot" target="_blank">联系提交</a>
+        </div>
     </div>
+    
+    <footer>
+        <p>🦞 币传 · 每日更新</p>
+        <p style="margin-top:8px;font-size:0.85rem;">数据来源: Twitter (6551 API)</p>
+    </footer>
+    
+    <script>
+        const bots = [
+            // 交易类
+            { name: "Wagmi", desc: "多链交易机器人，支持 SOL/BNB/ETH，50+ 多签钱包", tags: ["多链", "交易"], category: "trading", link: "https://wagmi.app" },
+            { name: "Aevo Bot", desc: "AI 交易机器人，45+ 结构化工具，AI agents 直连交易所", tags: ["AI", "交易"], category: "trading", link: "" },
+            { name: "Jupiter Bot", desc: "Solana 交易，0 手续费 1 个月", tags: ["Solana", "免费"], category: "trading", link: "https://t.me/JupiterCometTr" },
+            { name: "XBTS DEX", desc: "DEX 交易 + 跨链 Swap + 质押，自 2018 年起", tags: ["多链", "DEX"], category: "trading", link: "https://t.me/xbtsdex_bot" },
+            { name: "Polysight", desc: "Polymarket 预测市场交易机器人", tags: ["预测", "多链"], category: "trading", link: "" },
+            { name: "Sun Crypto", desc: "合约交易（印度交易所）", tags: ["合约", "印度"], category: "trading", link: "" },
+            { name: "Dispence Cash", desc: "追踪止损 + 现货交易", tags: ["Solana", "止损"], category: "trading", link: "" },
+            { name: "SideShift", desc: "语音指令交易，跨链 Swap", tags: ["多链", "Swap"], category: "trading", link: "" },
+            
+            // 收益类
+            { name: "Yieldex AI", desc: "稳定币收益比较，12%+ APY", tags: ["免费", "DeFi"], category: "yield", link: "https://t.me/apy_info_bot" },
+            { name: "Yield Bot AI", desc: "DeFi Yield 狙击，实时监控最佳收益", tags: ["DeFi", "Yield"], category: "yield", link: "" },
+            { name: "TBook", desc: "RWA 收益引入 Telegram，直接在 TG 获取现实世界收益", tags: ["RWA", "收益"], category: "yield", link: "" },
+            { name: "BeanBee AI", desc: "BNB Chain 收益优化，rug 检测", tags: ["BNB", "AI"], category: "yield", link: "https://beanbee.ai" },
+            { name: "Maiga AI", desc: "AI DeFi 策略执行，yield farming", tags: ["AI", "DeFi"], category: "yield", link: "" },
+            
+            // 监控类
+            { name: "Sect Bot", desc: "TG 喊单记录，500万+ 数据，史上最大公开喊单库", tags: ["数据", "喊单"], category: "monitor", link: "" },
+            { name: "Whale AI", desc: "追踪 1000+ 鲸鱼钱包，实时获取买入动态", tags: ["鲸鱼", "链上"], category: "monitor", link: "" },
+            { name: "Alpha Meme", desc: "巨鲸追踪 + 新币提醒 + Alpha 内幕", tags: ["Alpha", "Meme"], category: "monitor", link: "https://t.me/Gmgnai_trade_bot" },
+            { name: "CoinTrendz", desc: "币圈事件日历，每日更新", tags: ["免费", "日历"], category: "monitor", link: "https://t.me/CoinTrendzBot" },
+            { name: "Bella Research", desc: "LLM 研究 + 鲸鱼追踪代币分析", tags: ["AI", "研究"], category: "monitor", link: "https://t.me/BellaResearchBot" },
+            { name: "Pulse Bot", desc: "市场脉搏信号，热门币提醒", tags: ["信号", "趋势"], category: "monitor", link: "" },
+            
+            // 组合管理
+            { name: "Laika AI", desc: "钱包追踪 + 实时分析 + NFT 管理 + Tap-to-Earn", tags: ["多链", "NFT"], category: "portfolio", link: "" },
+            { name: "Outlight AI", desc: "AI 驱动投资组合管理，Twitter + 链上分析", tags: ["AI", "组合"], category: "portfolio", link: "" },
+            { name: "BitClips", desc: "出售 .clip 域名换取加密货币", tags: ["NFT", "域名"], category: "portfolio", link: "https://t.me/bitclips_bot" },
+            
+            // 复制交易
+            { name: "AsterBot", desc: "做多/做空 + 复制交易 + 分析功能", tags: ["DEX", "复制"], category: "copy", link: "" },
+            { name: "GMGN", desc: "复制交易 + 跟单，smart money 追踪", tags: ["多链", "跟单"], category: "copy", link: "https://t.me/Gmgnai_trade_bot" },
+            
+            // 工具类
+            { name: "Dyor Bot", desc: "代币安全性检查，rug pull 检测", tags: ["安全", "审计"], category: "tools", link: "" },
+            { name: "Airdrop Hunter", desc: "空投任务追踪，自动领取", tags: ["空投", "自动"], category: "tools", link: "" },
+        ];
+        
+        let currentFilter = 'all';
+        let searchTerm = '';
+        
+        function getCategoryGridId(category) {
+            const map = {
+                'trading': 'tradingGrid',
+                'yield': 'yieldGrid',
+                'monitor': 'monitorGrid',
+                'portfolio': 'portfolioGrid',
+                'copy': 'copyGrid',
+                'tools': 'toolsGrid'
+            };
+            return map[category] || 'tradingGrid';
+        }
+        
+        function renderBot(bot) {
+            const tagsHtml = bot.tags.map(t => {
+                const cls = t === '免费' ? 'free' : '';
+                return `<span class="tag ${cls}">${t}</span>`;
+            }).join('');
+            
+            const linkHtml = bot.link 
+                ? `<a href="${bot.link}" target="_blank" style="color:var(--primary);font-size:0.85rem;">访问 →</a>` 
+                : '';
+            
+            return `
+                <div class="card" data-tags="${bot.tags.join(',')}" data-category="${bot.category}">
+                    <div class="card-header">
+                        <h3>${bot.name}</h3>
+                        ${linkHtml}
+                    </div>
+                    <p>${bot.desc}</p>
+                    <div class="tags">${tagsHtml}</div>
+                </div>
+            `;
+        }
+        
+        function filterBots() {
+            searchTerm = document.getElementById('search').value.toLowerCase();
+            renderAll();
+        }
+        
+        function setFilter(filter) {
+            currentFilter = filter;
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.textContent.includes(filter === 'all' ? '全部' : filter === 'free' ? '免费' : filter === 'ai' ? 'AI' : '鲸鱼'));
+            });
+            renderAll();
+        }
+        
+        function matchesFilter(bot) {
+            // 分类过滤
+            if (currentFilter === 'all') return true;
+            if (currentFilter === 'free') return bot.tags.includes('免费');
+            if (currentFilter === 'ai') return bot.tags.includes('AI');
+            if (currentFilter === 'whale') return bot.tags.includes('鲸鱼');
+            return true;
+        }
+        
+        function matchesSearch(bot) {
+            if (!searchTerm) return true;
+            return bot.name.toLowerCase().includes(searchTerm) || 
+                   bot.desc.toLowerCase().includes(searchTerm) ||
+                   bot.tags.some(t => t.toLowerCase().includes(searchTerm));
+        }
+        
+        function renderAll() {
+            const categories = ['trading', 'yield', 'monitor', 'portfolio', 'copy', 'tools'];
+            
+            categories.forEach(cat => {
+                const gridId = getCategoryGridId(cat);
+                const filtered = bots.filter(b => b.category === cat && matchesFilter(b) && matchesSearch(b));
+                document.getElementById(gridId).innerHTML = filtered.map(renderBot).join('');
+            });
+            
+            document.getElementById('botCount').textContent = bots.length + '+';
+        }
+        
+        // 初始化
+        renderAll();
+        
+        // 平滑滚动
+        document.querySelectorAll('nav a').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                const id = a.getAttribute('href').slice(1);
+                document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
 </body>
 </html>
